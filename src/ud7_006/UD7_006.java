@@ -11,15 +11,20 @@ package ud7_006;
  */
 public class UD7_006 {
 
-    /**
+    private static final String FinEjemplares2 = "No hay ejemplares del libro ";
+	private static final String LibroDevuelto = "Se ha devuelto el libro ";
+	private static final String FinEjemplares = "No quedan ejemplares del libro ";
+	private static final String LibroPrestado = "Se ha prestado el libro ";
+
+	/**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         String titulo, autor;
         int ejemplares;
         
-        // Se crea el objeto libro1 utilizando el constructor con parámetros
-        Libro libro1 = new Libro("El quijote", "Cervantes", 1, 0);
+        // Se crea el objeto libro1 utilizando el constructor con parmetros
+        Libro libroElQuijote = new Libro("El quijote", "Cervantes", 1, 0);
         
         // Se crea el objeto libro2 utilizando el constructor por defecto
         Libro libro2 = new Libro();
@@ -38,60 +43,49 @@ public class UD7_006 {
         libro2.setEjemplares(ejemplares);
         
         // Se muestran por pantalla los datos del objeto libro1
-        System.out.println("Libro 1:");
-        System.out.println("Titulo: " + libro1.getTitulo());
-        System.out.println("Autor: " + libro1.getAutor());
-        System.out.println("Ejemplares: " + libro1.getEjemplares());
-        System.out.println("Prestados: " + libro1.getPrestados());
-        System.out.println();
+        mostrarDatosLibro(libroElQuijote);
         
-        // Se realiza un préstamo de libro1. El método devuelve true si se ha podido prestar
-        if (libro1.prestamo())
-       System.out.println("Se ha prestado el libro " + libro1.getTitulo());
-        else
-       System.out.println("No quedan ejemplares del libro " + libro1.getTitulo() +
-       " para prestar");
-        // Se realiza una devolución de libro1. El método devuelve true si se ha podido devolver
-        if (libro1.devolucion())
-       System.out.println("Se ha devuelto el libro " + libro1.getTitulo());
-        else
-       System.out.println("No hay ejemplares del libro " + libro1.getTitulo() +
-       " prestados");
-        // Se realiza otro préstamo de libro1
-        if (libro1.prestamo())
-       System.out.println("Se ha prestado el libro " + libro1.getTitulo());
-        else
-       System.out.println("No quedan ejemplares del libro " + libro1.getTitulo() +
-       " para prestar");
-        // Se realiza otro préstamo de libro1. En este caso no se podrá realizar ya que
-        // solo hay un ejemplar de este libro y ya está prestado. Se mostrará un mensaje
-        if (libro1.prestamo())
-       System.out.println("Se ha prestado el libro " + libro1.getTitulo());
-        else
-       System.out.println("No quedan ejemplares del libro " + libro1.getTitulo() +
-       " para prestar");
+        // Se realiza un prestamo de libro1. El metodo devuelve true si se ha podido prestar
+        realizarPrestamo(libroElQuijote);
+        
+        // Se realiza un devolucion
+        realizarDevolucion(libroElQuijote);
+        
+        // Se realizan dos prestamos m�s
+        realizarPrestamo(libroElQuijote);
+        realizarPrestamo(libroElQuijote);
 
         // Se intenta devolver un libro no prestado
-        if (libro2.devolucion())
-       System.out.println("Se ha devuelto el libro " + libro2.getTitulo());
-        else
-       System.out.println("No hay ejemplares del libro " + libro2.getTitulo() +
-       " prestados");
-
-        // Mostrar los datos del objeto libro1
-        System.out.println("Libro 1:");
-        System.out.println("Titulo: " + libro1.getTitulo());
-        System.out.println("Autor: " + libro1.getAutor());
-        System.out.println("Ejemplares: " + libro1.getEjemplares());
-        System.out.println("Prestados: " + libro1.getPrestados());
-        System.out.println();
-        // Mostrar los datos del objeto libro2
-        System.out.println("Libro 2:");
-        System.out.println("Titulo: " + libro2.getTitulo());
-        System.out.println("Autor: " + libro2.getAutor());
-        System.out.println("Ejemplares: " + libro2.getEjemplares());
-        System.out.println("Prestados: " + libro2.getPrestados());
-        System.out.println();
+        realizarDevolucion(libro2);
+        
+        // Se muestran los datos de los libros
+        mostrarDatosLibro(libroElQuijote);
+        mostrarDatosLibro(libro2);
     }
+
+	private static void realizarDevolucion(Libro libroDevuelto) {
+		if (libroDevuelto.devolucion())
+       System.out.println(LibroDevuelto + libroDevuelto.getTitulo());
+        else
+       System.out.println(FinEjemplares2 + libroDevuelto.getTitulo() +
+       " prestados");
+	}
+
+	private static void realizarPrestamo(Libro libroPrestado) {
+		if (libroPrestado.prestamo())
+       System.out.println(LibroPrestado + libroPrestado.getTitulo());
+        else
+       System.out.println(FinEjemplares + libroPrestado.getTitulo() +
+       " para prestar");
+	}
+
+	private static void mostrarDatosLibro(Libro libroEjempl) {
+		System.out.println("Libro:");
+        System.out.println("Titulo: " + libroEjempl.getTitulo());
+        System.out.println("Autor: " + libroEjempl.getAutor());
+        System.out.println("Ejemplares: " + libroEjempl.getEjemplares());
+        System.out.println("Prestados: " + libroEjempl.getPrestados());
+        System.out.println();
+	}
     
 }
