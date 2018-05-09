@@ -7,19 +7,37 @@ package ud7_006;
 
 /**
  *
- * @author dam1d06
+ * <h2> Documentamos: Clase UD7_006. <h2>
+ * 
+ * Objeto del programa: Clase que simula el funcionamiento de una biblioteca.
+ * 
+ * @version Curso 17/18
+ * @author Alessandro Cardin Feijoo
+ * @since 09/05/2018
+ * 
  */
 public class UD7_006 {
-
+	
+	
+	/**
+	 * Constantes de cadenas de caracteres sobre los mensajes que se muestran por pantalla
+	 * 
+	 */
     private static final String FinEjemplares2 = "No hay ejemplares del libro ";
 	private static final String LibroDevuelto = "Se ha devuelto el libro ";
 	private static final String FinEjemplares = "No quedan ejemplares del libro ";
 	private static final String LibroPrestado = "Se ha prestado el libro ";
 
 	/**
-     * @param args the command line arguments
+	 * Metodo principal del programa
+	 * 
+     * @param args Argumentos de la linea de comandos
      */
     public static void main(String[] args) {
+    	
+    	/**
+    	 * Atributos para almacenar la información que enviamos a la clase Libro
+    	 */
         String titulo, autor;
         int ejemplares;
         
@@ -63,6 +81,14 @@ public class UD7_006 {
         mostrarDatosLibro(libro2);
     }
 
+    /**
+     * Mostramos por pantalla si se puede devolver el libro o no 
+     * 
+     * @see LibroDevuelto
+     * @see FinEjemplares
+     * 
+     * @param libroDevuelto
+     */
 	private static void realizarDevolucion(Libro libroDevuelto) {
 		if (libroDevuelto.devolucion())
        System.out.println(LibroDevuelto + libroDevuelto.getTitulo());
@@ -71,6 +97,14 @@ public class UD7_006 {
        " prestados");
 	}
 
+	/**
+	 * Mostramos por pantalla si se puede prestar el libro o no
+	 * 
+	 * @see LibroPrestado
+	 * @see FinEjemplares
+	 * 
+	 * @param libroPrestado
+	 */
 	private static void realizarPrestamo(Libro libroPrestado) {
 		if (libroPrestado.prestamo())
        System.out.println(LibroPrestado + libroPrestado.getTitulo());
@@ -79,6 +113,11 @@ public class UD7_006 {
        " para prestar");
 	}
 
+	/**
+	 * Mostramos la información del libro recibido como parametro
+	 * 
+	 * @param libroEjempl
+	 */
 	private static void mostrarDatosLibro(Libro libroEjempl) {
 		System.out.println("Libro:");
         System.out.println("Titulo: " + libroEjempl.getTitulo());
